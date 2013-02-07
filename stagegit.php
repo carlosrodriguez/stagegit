@@ -1,7 +1,7 @@
 <?php
 
-$stageroot = "/var/www/staging/";		// Root directory where repositories are synced to
-$branch = "master";							// Name of branch you want to pull from
+$stageroot = "/var/www/";		// Root directory where repositories are synced to
+$branch = "master";						// Name of branch you want to pull from
 
 
 // Testing JSON feed
@@ -22,20 +22,17 @@ $directory = $stagegit->identifyDir($gitdata->repository->name, $stageroot);
 $remote = $stagegit->createRemote($gitdata->repository->owner->name, $gitdata->repository->name);
 
 if(!file_exists($directory)):
-
-	exec("sudo -i");
-
 	chdir($stageroot);
 
 	// Create the directory for our repo
 	exec("git clone " . $remote);
 
-	echo "git clone " . $remote;
+	chdir($directory);
+else:
+	chdir($directory);
+
+	exec("git pull");
 endif;
-
-chdir($directory);
-
-exec("git pull");
 
 exec("git checkout " . $branch);
 

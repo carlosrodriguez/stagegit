@@ -1,3 +1,5 @@
 chef/
 Vagrantfile
 .vagrant
+staging/
+.ssh/

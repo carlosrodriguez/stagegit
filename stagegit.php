@@ -1,13 +1,10 @@
 <?php
 
-$stageroot = "/var/www/";		// Root directory where repositories are synced to
+$stageroot = "/var/www/";				// Root directory where repositories are synced to
 $branch = "master";						// Name of branch you want to pull from
 
-
 // Testing JSON feed
-$my_file = 'payload.txt';
-$handle = fopen($my_file, 'r');
-$gitdata = json_decode(fread($handle,filesize($my_file)));
+$gitdata = json_decode($_POST['payload'], true);
 
 
 
@@ -17,25 +14,34 @@ if(empty($gitdata)) die("No git data to submit");
 
 $stagegit = new stagegit();
 
+$stagegit->addLog("Started file");
+
 $directory = $stagegit->identifyDir($gitdata->repository->name, $stageroot);
 
 $remote = $stagegit->createRemote($gitdata->repository->owner->name, $gitdata->repository->name);
 
+$stagegit->addLog("Set namespaces");
+
 if(!file_exists($directory)):
+	$stagegit->addLog("Creating");
 	chdir($stageroot);
 
 	// Create the directory for our repo
 	exec("git clone " . $remote);
 
 	chdir($directory);
+	$stagegit->addLog("Created");
 else:
+	$stagegit->addLog("Updating");
 	chdir($directory);
 
 	exec("git pull");
+	$stagegit->addLog("Updated");
 endif;
 
 exec("git checkout " . $branch);
 
+$stagegit->addLog("Checkout");
 
 
 
@@ -44,8 +50,18 @@ class stagegit {
 		return $root . $reponame;
 	}
 
-	public function createRemote($owner, $name){
+	public function createRemote($owner, $name) {
 		return "git@github.com:".$owner."/".$name.".git";
+	}
+
+	public function addLog($message) {
+		clearstatcache();
+
+		$logfile = "git_log.txt";
+
+		$fo = fopen($logfile, "a");
+		fwrite($fo, $message);
+		fclose($fo);
 	}
 }
 

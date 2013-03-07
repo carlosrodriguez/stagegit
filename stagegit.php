@@ -63,6 +63,7 @@ if(!empty($package->git)):
 
 		exec("git checkout " . $stage->branch, $output);
 		print_r($output);
+		print_r($stage->branch);
 	endforeach;
 endif;
 

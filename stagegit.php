@@ -6,8 +6,11 @@ $branch = "master";						// Name of branch you want to pull from
 // Testing JSON feed
 $gitdata = json_decode($_POST['payload'], true);
 
+$fp = fopen('payload.txt', 'w');
+fwrite($fp, $_POST['payload']);
+fclose($fp);
 
-
+die();
 
 /*  Check for data before we continue  */
 if(empty($gitdata)) die("No git data to submit");
@@ -23,7 +26,7 @@ if(!file_exists($directory)):
 
 	// Create the directory for our repo
 	exec("git clone " . $remote, $output);
-	$stagegit->addLog("git clone  " . $remote);
+	$stagegit->addLog("git clone " . $remote);
 
 	chdir($directory);
 else:
@@ -52,7 +55,7 @@ class stagegit {
 		$logfile = $stageroot . "git_log.txt";
 
 		$fo = fopen($logfile, "a");
-		fwrite($fo, date("Y-m-d H:i:s") . $message . "\n");
+		fwrite($fo, "[".date("Y-m-d H:i:s") . "] " . $message . "\n");
 		fclose($fo);
 	}
 }

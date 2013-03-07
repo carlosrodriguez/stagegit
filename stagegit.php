@@ -58,9 +58,9 @@ if(!empty($package->git)):
 		if(!file_exists($publishdir)):
 			echo "Create";
 			chdir($publishto);
-			exec("git clone " . $remote . " ./", $output);
-
+			mkdir($stage->url);
 			chdir($publishdir);
+			exec("git clone " . $remote . " ./", $output);
 		else:
 			echo "pull";
 			chdir($publishdir);

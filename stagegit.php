@@ -52,14 +52,17 @@ if(!empty($package->git)):
 			mkdir($stage->url);
 			chdir($publishdir);
 			exec("git clone " . $remote . " ./", $output);
+			print_r($output);
 		else:
 			$stagegit->addLog("Updating " . $stage->url);
 			chdir($publishdir);
 
-			exec("git pull");
+			exec("git pull", $output);
+			print_r($output);
 		endif;
 
-		exec("git checkout " . $stage->branch);
+		exec("git checkout " . $stage->branch, $output);
+		print_r($output);
 	endforeach;
 endif;
 

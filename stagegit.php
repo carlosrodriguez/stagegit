@@ -67,7 +67,6 @@ endif;
 
 
 
-
 /*
 *
 *	Some functions that can be shared

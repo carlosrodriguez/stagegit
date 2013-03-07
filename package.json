@@ -42,7 +42,7 @@
   },
   "git": [
     {
-      "branch":"php",
+      "branch":"master",
       "url":"php.adt.com"
     }
   ]

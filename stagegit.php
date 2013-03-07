@@ -1,7 +1,8 @@
 <?php
 
+$publishto = "/var/www/stagegit/publish/";
 $stageroot = "/var/www/stagegit/";				// Root directory where repositories are synced to
-$branch = "master";						// Name of branch you want to pull from
+$branch = "master";						// Default branch
 
 // Testing JSON feed
 // $gitdata = json_decode($_POST['payload'], true);
@@ -47,13 +48,39 @@ echo $directory . '/package.json';
 echo "<pre>";
 var_dump($package->git);
 
-foreach($package->git as $stage):
-	echo "Branch :: " . $stage->branch;
-	echo "url :: " . $stage->url;
-endforeach;
+if(!empty($package->git)):
+	foreach($package->git as $stage):
+		echo "Branch :: " . $stage->branch;
+		echo "url :: " . $stage->url;
+
+		$publishdir = $stagegit->identifyDir($stage->url, $publishto);
+
+		if(!file_exists($publishdir)):
+			echo "Create";
+			chdir($publishto);
+			exec("git clone " . $remote . " ./", $output);
+
+			chdir($publishdir);
+		else:
+			echo "pull";
+			chdir($publishdir);
+
+			exec("git pull");
+		endif;
+
+		exec("git checkout " . $stage->branch);
+		echo "checkout";
+	endforeach;
+endif;
 
 
 
+
+/*
+*
+*	Some functions that can be shared
+*
+*/
 
 class stagegit {
 	public function identifyDir($reponame, $root) {

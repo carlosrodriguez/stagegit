@@ -15,7 +15,6 @@ if(empty($gitdata)) die("No git data to submit");
 $stagegit = new stagegit();
 
 $directory = $stagegit->identifyDir($gitdata->repository->name, $stageroot);
-
 $remote = $stagegit->createRemote($gitdata->repository->owner->name, $gitdata->repository->name);
 
 if(!file_exists($directory)):
@@ -33,7 +32,22 @@ else:
 	exec("git pull");
 endif;
 
-exec("git checkout " . $branch);
+// exec("git checkout " . $branch);
+
+
+/*
+*
+*	Data has now been pulled to server, time to read package.json
+*
+*/
+
+$package = json_decode(file_get_contents($directory . '/package.json'));
+
+echo "<pre>";
+var_dump($package);
+
+
+
 
 
 

@@ -45,7 +45,7 @@ $package = json_decode(file_get_contents($directory . '/package.json'));
 
 echo $directory . '/package.json';
 echo "<pre>";
-var_dump($package);
+var_dump($package->git);
 
 
 

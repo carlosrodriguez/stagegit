@@ -6,12 +6,13 @@ $branch = "master";						// Default branch
 
 // Testing JSON feed
 $gitdata = json_decode($_POST['payload'], true);
-
+$stagegit = new stagegit();
+$stagegit->addLog("Starting with " . $gitdata);
 
 /*  Check for data before we continue  */
 if(empty($gitdata)) die("No git data to submit");
 
-$stagegit = new stagegit();
+
 
 $directory = $stagegit->identifyDir($gitdata->repository->name, $stageroot);
 $remote = $stagegit->createRemote($gitdata->repository->owner->name, $gitdata->repository->name);

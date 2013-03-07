@@ -1,0 +1,4 @@
+[2013-03-07 14:40:27] git clone git@github.com:ScottishDave/stagegit.git
+[2013-03-07 14:42:55] git clone git@github.com:ScottishDave/stagegit.git
+[2013-03-07 14:43:57] git clone git@github.com:ScottishDave/stagegit.git
+[2013-03-07 14:44:41] git clone git@github.com:ScottishDave/stagegit.git

@@ -6,7 +6,7 @@ $branch = "master";						// Name of branch you want to pull from
 // Testing JSON feed
 // $gitdata = json_decode($_POST['payload'], true);
 
-$getdata = json_decode(file_get_contents('payload.txt'));
+$gitdata = json_decode(file_get_contents('payload.txt'));
 
 
 /*  Check for data before we continue  */

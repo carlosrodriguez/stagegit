@@ -5,9 +5,7 @@ $stageroot = "/var/www/stagegit/";				// Root directory where repositories are s
 $branch = "master";						// Default branch
 
 // Testing JSON feed
-// $gitdata = json_decode($_POST['payload'], true);
-
-$gitdata = json_decode(file_get_contents('payload.txt'));
+$gitdata = json_decode($_POST['payload'], true);
 
 
 /*  Check for data before we continue  */
@@ -61,8 +59,7 @@ if(!empty($package->git)):
 			print_r($output);
 		endif;
 
-		//exec("git checkout " . $stage->branch, $output);
-		exec("git checkout forstaging", $output);
+		exec("git checkout " . $stage->branch, $output);
 		print_r($output);
 		print_r($stage->branch);
 	endforeach;

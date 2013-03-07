@@ -1,0 +1,49 @@
+{
+  "name": "ADT.com",
+  "description": "ADT.com Redesign 2013",
+  "version": "0.0.2",
+  "homepage": "http://www.adt.com",
+  "contributors": [
+    {
+      "name": "David McKeown",
+      "email": "dmckeown@bgtpartners.com"
+    },
+    {
+      "name": "Carlos Rodriguez",
+      "email": "crodriguez@bgtpartners.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bgtpartners/adt-com"
+  },
+  "bugs": {
+    "url": "https://github.com/bgtpartners/adt-com/issues"
+  },
+  "engines": {
+    "node": "1.1.65"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "grunt": "0.4.0",
+    "grunt-contrib": "0.4.0",
+    "grunt-parallel": "0.0.2",
+    "grunt-string-replace": "0.2.1",
+    "grunt-plato": "0.1.5",
+    "grunt-docco": "0.2.0",
+    "grunt-styleguide": "0.2.2",
+    "gruntacular":" 0.2.2",
+    "testacular": "0.6.0",
+    "request": "2.14.0"
+  },
+  "devDependencies": {
+  },
+  "git": [
+    {
+      "branch":"php",
+      "url":"php.adt.com"
+    }
+  ]
+}

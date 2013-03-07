@@ -44,32 +44,24 @@ endif;
 
 $package = json_decode(file_get_contents($directory . '/package.json'));
 
-echo $directory . '/package.json';
-echo "<pre>";
-var_dump($package->git);
-
 if(!empty($package->git)):
 	foreach($package->git as $stage):
-		echo "Branch :: " . $stage->branch;
-		echo "url :: " . $stage->url;
-
 		$publishdir = $stagegit->identifyDir($stage->url, $publishto);
 
 		if(!file_exists($publishdir)):
-			echo "Create";
+			$stagegit->addLog("Creating " . $stage->url);
 			chdir($publishto);
 			mkdir($stage->url);
 			chdir($publishdir);
 			exec("git clone " . $remote . " ./", $output);
 		else:
-			echo "pull";
+			$stagegit->addLog("Updating " . $stage->url);
 			chdir($publishdir);
 
 			exec("git pull");
 		endif;
 
 		exec("git checkout " . $stage->branch);
-		echo "checkout";
 	endforeach;
 endif;
 

@@ -47,7 +47,10 @@ echo $directory . '/package.json';
 echo "<pre>";
 var_dump($package->git);
 
-
+foreach($package->git as $stage):
+	echo "Branch :: " . $stage['branch'];
+	echo "url :: " . $stage['url'];
+endforeach;
 
 
 

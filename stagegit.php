@@ -33,8 +33,6 @@ else:
 	exec("git pull");
 endif;
 
-// exec("git checkout " . $branch);
-
 
 /*
 *

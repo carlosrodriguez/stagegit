@@ -14,9 +14,9 @@ if(empty($gitdata)) die("No git data to submit");
 
 $stagegit = new stagegit();
 
-$directory = $stagegit->identifyDir($gitdata["repository"]["name"], $stageroot);
+$directory = $stagegit->identifyDir($gitdata->repository->name, $stageroot);
 
-$remote = $stagegit->createRemote($gitdata["repository"]["owner"]["name"], $gitdata["repository"]["name"]);
+$remote = $stagegit->createRemote($gitdata->repository->owner->name, $gitdata->repository->name);
 
 if(!file_exists($directory)):
 	chdir($stageroot);

@@ -1,6 +1,6 @@
 <?php
 
-$stageroot = "/var/www/";				// Root directory where repositories are synced to
+$stageroot = "/var/www/stagegit";				// Root directory where repositories are synced to
 $branch = "master";						// Name of branch you want to pull from
 
 // Testing JSON feed

@@ -1,6 +1,6 @@
 <?php
 
-$publishto = "/var/www/stagegit/publish/";
+$publishto = "/var/www/publishtest/";
 $stageroot = "/var/www/stagegit/";				// Root directory where repositories are synced to
 $branch = "master";						// Default branch
 
@@ -51,7 +51,7 @@ if(!empty($package->git)):
 
 		if(!file_exists($publishdir)):
 			$stagegit->addLog("Creating " . $publishdir);
-		
+
 			mkdir($publishdir, $recursive = true);
 
 			chdir($publishdir);

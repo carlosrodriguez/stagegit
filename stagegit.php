@@ -6,7 +6,8 @@ $stageroot = "/var/www/stagegit/";				// Root directory where repositories are s
 $branch = "master";						// Default branch
 
 // Testing JSON feed
-$gitdata = json_decode($_POST['payload']);
+// $gitdata = json_decode($_POST['payload']);
+$gitdata = json_decode(file_get_contents('payload.txt'));
 $stagegit = new stagegit();
 
 $stagegit->addLog("Initiated by " . $stagegit->getRealIpAddr());

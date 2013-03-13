@@ -16,7 +16,7 @@ if(empty($gitdata)) {
 	die("No git data to submit");	
 }
 
-$stagegit->addLog("Starting with " . print_r($gitdata, true));
+$stagegit->addLog("Starting with " . print_r($gitdata, true);
 
 $directory = $stagegit->identifyDir($gitdata->repository->name, $stageroot);
 $remote = $stagegit->createRemote($gitdata->repository->owner->name, $gitdata->repository->name);

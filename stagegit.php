@@ -19,8 +19,8 @@ if(empty($gitdata)) {
 
 $stagegit->addLog("Received git data" . print_r($gitdata, true));
 
-$directory = $stagegit->identifyDir($gitdata->repository->name, $reporoot);
-$remote = $stagegit->createRemote($gitdata->repository->owner->name, $gitdata->repository->name);
+$directory = $stagegit->identifyDir($gitdata['repository']['name'], $reporoot);
+$remote = $stagegit->createRemote($gitdata['repository']['owner']['name'], $gitdata['repository']['name']);
 
 if(!file_exists($directory)):
 	chdir($reporoot);

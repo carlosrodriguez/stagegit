@@ -50,12 +50,9 @@ if(!empty($package->git)):
 		$publishdir = $stagegit->identifyDir($stage->url, $publishto);
 
 		if(!file_exists($publishdir)):
-			$stagegit->addLog("Creating " . $stage->url);
-			chdir($publishto);
-			
-			if (!@mkdir($stage->url)) {
-				$stagegit->addLog("Failed creating directory: " . error_get_last());
-			}
+			$stagegit->addLog("Creating " . $publishdir);
+		
+			mkdir($publishdir, $recursive = true);
 
 			chdir($publishdir);
 			exec("git clone " . $remote . " ./", $output);

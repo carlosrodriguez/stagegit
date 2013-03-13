@@ -17,7 +17,7 @@ if(empty($gitdata)) {
 	die("No git data to submit");	
 }
 
-$stagegit->addLog("Received git data for '".$gitdata->repository->name);
+$stagegit->addLog("Received git data for ".$gitdata->repository->name);
 
 $directory = $stagegit->identifyDir($gitdata->repository->name, $reporoot);
 $remote = $stagegit->createRemote($gitdata->repository->owner->name, $gitdata->repository->name);
@@ -26,9 +26,9 @@ if(!file_exists($directory)):
 	chdir($reporoot);
 
 	// Create the directory for our repo
-	exec("git clone " . $remote, $output);
 	$stagegit->addLog("git clone " . $remote);
-
+	exec("git clone " . $remote, $output);
+	
 	chdir($directory);
 else:
 	$stagegit->addLog("Updating " . $directory);

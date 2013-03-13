@@ -16,7 +16,7 @@ if(empty($gitdata)) {
 	die("No git data to submit");	
 }
 
-$stagegit->addLog("Starting with " . print_r($gitdata, true));
+$stagegit->addLog("Received git data");
 
 $directory = $stagegit->identifyDir($gitdata->repository->name, $stageroot);
 $remote = $stagegit->createRemote($gitdata->repository->owner->name, $gitdata->repository->name);
@@ -52,7 +52,11 @@ if(!empty($package->git)):
 		if(!file_exists($publishdir)):
 			$stagegit->addLog("Creating " . $stage->url);
 			chdir($publishto);
-			mkdir($stage->url);
+			
+			if (!@mkdir($stage->url)) {
+				$stagegit->addLog("Failed creating directory: " . error_get_last());
+			}
+
 			chdir($publishdir);
 			exec("git clone " . $remote . " ./", $output);
 			print_r($output);

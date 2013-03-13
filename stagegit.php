@@ -1,7 +1,7 @@
 <?php
 
 $publishto = "/var/www/publishtest/";
-$stageroot = "/var/www/stagegit/";				// Root directory where repositories are synced to
+$stageroot = "/var/www/repos/";				// Root directory where repositories are synced to
 $branch = "master";						// Default branch
 
 // Testing JSON feed

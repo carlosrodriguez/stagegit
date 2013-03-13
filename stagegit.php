@@ -1,7 +1,8 @@
 <?php
 
 $publishto = "/var/www/publishtest/";
-$stageroot = "/var/www/repos/";				// Root directory where repositories are synced to
+$reporoot = "/var/www/repos/";
+$stageroot = "/var/www/stagegit/";				// Root directory where repositories are synced to
 $branch = "master";						// Default branch
 
 // Testing JSON feed
@@ -18,11 +19,11 @@ if(empty($gitdata)) {
 
 $stagegit->addLog("Received git data");
 
-$directory = $stagegit->identifyDir($gitdata->repository->name, $stageroot);
+$directory = $stagegit->identifyDir($gitdata->repository->name, $reporoot);
 $remote = $stagegit->createRemote($gitdata->repository->owner->name, $gitdata->repository->name);
 
 if(!file_exists($directory)):
-	chdir($stageroot);
+	chdir($reporoot);
 
 	// Create the directory for our repo
 	exec("git clone " . $remote, $output);

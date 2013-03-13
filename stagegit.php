@@ -7,12 +7,16 @@ $branch = "master";						// Default branch
 // Testing JSON feed
 $gitdata = json_decode($_POST['payload'], true);
 $stagegit = new stagegit();
-$stagegit->addLog("Starting with " . $gitdata);
+
+$stagegit->addLog("Initiated by " . $stagegit->getRealIpAddr());
 
 /*  Check for data before we continue  */
-if(empty($gitdata)) die("No git data to submit");
+if(empty($gitdata)) {
+	$stagegit->addLog("No git data received");
+	die("No git data to submit");	
+}
 
-
+$stagegit->addLog("Starting with " . $gitdata);
 
 $directory = $stagegit->identifyDir($gitdata->repository->name, $stageroot);
 $remote = $stagegit->createRemote($gitdata->repository->owner->name, $gitdata->repository->name);
@@ -91,6 +95,25 @@ class stagegit {
 		$fo = fopen($logfile, "a");
 		fwrite($fo, "[".date("Y-m-d H:i:s") . "] " . $message . "\n");
 		fclose($fo);
+	}
+
+	public function getRealIpAddr()
+	{
+		if (!empty($_SERVER['HTTP_CLIENT_IP']))
+		//check ip from share internet
+		{
+			$ip=$_SERVER['HTTP_CLIENT_IP'];
+		}
+		elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+		//to check ip is pass from proxy
+		{
+			$ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+		}
+		else
+		{
+			$ip=$_SERVER['REMOTE_ADDR'];
+		}
+		return $ip;
 	}
 }
 

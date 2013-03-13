@@ -42,8 +42,8 @@
   },
   "git": [
     {
-      "branch":"php",
-      "url":"php.adt.com"
+      "branch":"test",
+      "url":"test.adt.com"
     }
   ]
 }

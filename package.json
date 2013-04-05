@@ -45,10 +45,10 @@
       "branch":"test",
       "exec":[
         {
-          "npm install"
+          "task":"npm install"
         },
         {
-          "touch file.txt"
+          "task":"touch file.txt"
         }
       ]
     }

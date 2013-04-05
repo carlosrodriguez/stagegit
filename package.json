@@ -43,7 +43,14 @@
   "git": [
     {
       "branch":"test",
-      "url":"test.adt.com"
+      "exec":[
+        {
+          "npm install"
+        },
+        {
+          "touch file.txt"
+        }
+      ]
     }
   ]
 }

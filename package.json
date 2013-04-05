@@ -51,6 +51,17 @@
           "task":"touch file.txt"
         }
       ]
+    },
+    {
+      "branch":"master",
+      "exec":[
+        {
+          "task":"npm install"
+        },
+        {
+          "task":"touch file.txt"
+        }
+      ]
     }
   ]
 }

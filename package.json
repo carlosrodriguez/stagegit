@@ -1,0 +1,14 @@
+{
+  "name": "stagegit",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "2.5.11"
+  },
+  "engines": {
+    "node": "0.8.4",
+    "npm": "1.1.45"
+  },
+  "devDependencies": {
+    "gift": "0.0.5"
+  }
+}

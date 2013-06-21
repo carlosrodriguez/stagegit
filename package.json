@@ -9,6 +9,8 @@
     "npm": "1.1.45"
   },
   "devDependencies": {
-    "gift": "0.0.5"
+    "grunt": "~0.4.1",
+    "gift": "0.0.5",
+    "grunt-contrib-coffee": "~0.7.0"
   }
 }
